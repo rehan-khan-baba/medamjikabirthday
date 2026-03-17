@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Alisha ❤️</title>
+
+<style>
+body {
+  margin:0;
+  background:black;
+  color:white;
+  text-align:center;
+  font-family: Arial;
+  overflow:hidden;
+}
+
+#start {
+  position:absolute;
+  top:40%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  padding:20px 40px;
+  font-size:20px;
+  background:#ff4da6;
+  border:none;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 0 25px pink;
+}
+
+#main {
+  display:none;
+  padding:20px;
+}
+
+h1 {
+  font-size:2.5em;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {text-shadow:0 0 10px white;}
+  to {text-shadow:0 0 30px pink;}
+}
+
+video {
+  width:80%;
+  margin-top:20px;
+  border-radius:15px;
+}
+
+.heart {
+  position:fixed;
+  bottom:-10px;
+  font-size:20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-100vh);}
+}
+
+#finalMsg {
+  margin-top:20px;
+  font-size:1.5em;
+  color:#ff4da6;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<button id="start">🎁 Tap for Surprise</button>
+
+<div id="main">
+  <h1>🎉 Happy Birthday Alisha 🎉</h1>
+
+  <p id="text"></p>
+
+  <video autoplay loop muted controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <div id="finalMsg">
+    Some people become special… without even trying ❤️
+  </div>
+
+  <audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+  </audio>
+</div>
+
+<script>
+let start = document.getElementById("start");
+let main = document.getElementById("main");
+let music = document.getElementById("music");
+
+start.onclick = () => {
+  start.style.display="none";
+  main.style.display="block";
+  music.play();
+  typeText();
+  hearts();
+  setTimeout(()=> {
+    document.getElementById("finalMsg").style.display="block";
+  },15000);
+};
+
+let msg = "Hey Alisha... 💫\n\nAaj ka din special hai...\npar aap usse bhi zyada special ho ❤️\n\nAapki smile sach me bohot pyari hai...\njo bina wajah bhi dil khush kar deti hai 😊\n\nIsliye socha aapke liye kuch alag karu...\nEk chhota sa surprise 🎁";
+
+let i=0;
+function typeText(){
+  let text=document.getElementById("text");
+  let inter=setInterval(()=>{
+    text.innerHTML += msg[i] === "\n" ? "<br>" : msg[i];
+    i++;
+    if(i>=msg.length) clearInterval(inter);
+  },50);
+}
+
+function hearts(){
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.innerHTML="❤️";
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },300);
+}
+</script>
+
+</body>
+</html>
